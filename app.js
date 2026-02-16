@@ -39,3 +39,17 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+// 🔐 인증 API
+const VALID_KEYS = ["JUNSEOB-ONLY-1234"];
+
+app.get("/auth", (req, res) => {
+
+    const key = req.query.key;
+
+    if(VALID_KEYS.includes(key)){
+        res.send("OK");
+    }else{
+        res.status(403).send("NO");
+    }
+
+});
